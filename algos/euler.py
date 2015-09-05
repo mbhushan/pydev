@@ -6,6 +6,11 @@
 # edges between nodes that have an Eulerian tour.
 #
 
+
+def edge(x, y):
+    return (x, y) if x < y else (y, x)
+
+
 def create_tour(nodes):
     tour = []
     nlen = len(nodes)
@@ -14,7 +19,6 @@ def create_tour(nodes):
         tour.append(e)
     return tour
 
-#########
 
 def get_degree(tour):
     degree = {}
@@ -22,6 +26,7 @@ def get_degree(tour):
         degree[x] = degree.get(x, 0) + 1
         degree[y] = degree.get(y, 0) + 1
     return degree
+
 
 def check_edge(t, b, nodes):
     """
@@ -40,6 +45,7 @@ def check_edge(t, b, nodes):
             return t[0]
     return None
 
+
 def connected_nodes(tour):
     """return the set of nodes reachable from
     the first node in `tour`"""
@@ -56,6 +62,7 @@ def connected_nodes(tour):
             nodes.add(node)
             explore.add(node)
     return nodes
+
 
 def is_eulerian_tour(nodes, tour):
     # all nodes must be even degree
@@ -77,7 +84,17 @@ def is_eulerian_tour(nodes, tour):
         print "Your graph wasn't connected"
         return False
 
+
 def test():
     nodes = [20, 21, 22, 23, 24, 25]
     tour = create_tour(nodes)
-    return is_eulerian_tour(nodes, tour)
+    result = is_eulerian_tour(nodes, tour)
+    print "is eulerian tour: ", result
+
+
+def main():
+    test()
+
+
+if __name__ == '__main__':
+    main()
