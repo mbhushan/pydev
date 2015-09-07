@@ -10,7 +10,6 @@
 # A possible Eulerian tour would be [1, 2, 3, 1]
 
 
-
 def find_eulerian_tour(graph):
     result = []
 
@@ -19,8 +18,12 @@ def find_eulerian_tour(graph):
 
 def test_euler_tour():
     graph1 = [(1, 2), (2, 3), (3, 1)]
+    graph2 = [(1, 2), (2, 3), (3, 4), (4, 5), (5, 6)]
     tour = find_eulerian_tour(graph1)
     print "graph: ", graph1
+    print "euler tour: ", tour
+    tour = find_eulerian_tour(graph2)
+    print "graph: ", graph2
     print "euler tour: ", tour
 
 
