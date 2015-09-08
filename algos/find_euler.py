@@ -23,11 +23,50 @@ def create_graph_map(graph):
     return gdict
 
 
+def has_euler_tour(graph):
+    gdict = {}
+    flag = True
+    for edge in graph:
+        for u in edge:
+            count = 0
+            if u in gdict:
+                count = gdict[u]
+            gdict[u] = count + 1
+    for key in gdict:
+        val = gdict[key]
+        if (val % 2) != 0:
+            flag = False
+            break
+    print "has_euler_tour: ", gdict
+    print "flag: ", flag
+    return flag
+
+
 def find_eulerian_tour(graph):
     result = []
 
+    if not has_euler_tour(graph):
+        print "No euler tour exists for this graph!"
+        return False
+    else:
+        print "Euler Path Exists!"
+
     gdict = create_graph_map(graph)
     print "gdict: ", gdict
+    start = graph[0][0]
+    visited = [start]
+    result = [start]
+    found = False
+    print "start: ", start
+    while not found:
+        vlist = gdict[start]
+        for v in vlist:
+            if v not in visited:
+                result.append(v)
+                visited.append(v)
+                start = v
+                break
+
     return result
 
 
