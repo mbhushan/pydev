@@ -64,6 +64,8 @@ def find_eulerian_tour(graph):
             if v not in visited:
                 result.append(v)
                 visited.append(v)
+                vlist.remove(v)
+                gdict[start] = vlist
                 start = v
                 break
 
