@@ -37,8 +37,8 @@ def has_euler_tour(graph):
         if (val % 2) != 0:
             flag = False
             break
-    print "has_euler_tour: ", gdict
-    print "flag: ", flag
+    # print "has_euler_tour: ", gdict
+    # print "flag: ", flag
     return flag
 
 
@@ -52,14 +52,15 @@ def find_eulerian_tour(graph):
         print "Euler Path Exists!"
 
     gdict = create_graph_map(graph)
-    print "gdict: ", gdict
+    # print "gdict: ", gdict
     start = graph[0][0]
     visited = [start]
     result = [start]
-    found = False
-    print "start: ", start
-    while not found:
+    found = True
+    # print "start: ", start
+    while found:
         vlist = gdict[start]
+        found = False
         for v in vlist:
             if v not in visited:
                 result.append(v)
@@ -67,19 +68,30 @@ def find_eulerian_tour(graph):
                 vlist.remove(v)
                 gdict[start] = vlist
                 start = v
+                found = True
                 break
+
+    while start != result[0]:
+        # print "v vlist: ", vlist
+        # print "v start: ", start
+        vlist = gdict[start]
+        v = vlist[0]
+        result.append(v)
+        vlist.remove(v)
+        gdict[start] = vlist
+        start = v
 
     return result
 
 
 def test_euler_tour():
     graph1 = [(1, 2), (2, 3), (3, 1)]
-    tour = find_eulerian_tour(graph1)
     print "graph: ", graph1
+    tour = find_eulerian_tour(graph1)
     print "euler tour: ", tour
     graph1 = [(1, 2), (2, 3), (3, 1), (3, 4), (4, 3)]
-    tour = find_eulerian_tour(graph1)
     print "graph: ", graph1
+    tour = find_eulerian_tour(graph1)
     print "euler tour: ", tour
 
 
