@@ -6,13 +6,17 @@ def mark_component(G, node, marked):
     total_marked = 1
     for neighbor in G[node]:
         if neighbor not in marked:
-            total_marked += mark_component(G, neighbor, marked)
-    return total_marked
+            total_marked += mark_component(G, neighbor, marked)[0]
+    return (total_marked, marked)
 
 def check_connection(G, v1, v2):
     # Return True if v1 is connected to v2 in G
     # or False if otherwise
-    return True
+    marked = {}
+    total_marked, marked = mark_component(G, v1, marked)
+    if v2 in marked:
+        return True
+    return False
     
 def make_link(G, node1, node2):
     if node1 not in G:
@@ -31,6 +35,13 @@ def test():
         make_link(G, v1, v2)
     assert check_connection(G, "a", "c") == True
     assert check_connection(G, 'a', 'b') == False
+    print "Connectivity check SUCCESS!!"
+
+def main():
+    test()
+
+if __name__ == '__main__':
+    main()
     
 
 
