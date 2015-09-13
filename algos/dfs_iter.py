@@ -7,9 +7,22 @@ def mark_component(G, node, marked):
             total_marked += mark_component(G, neighbor, marked)
     return total_marked
 
-#########
-# Code for testing
-#
+
+def mark_component_iter(G, node, marked):
+    stack = []
+    stack.append(node)
+    marked[node] = True
+    total_marked = 1
+    while stack:
+        u = stack.pop()
+        for neighbor in G[u]:
+            if neighbor not in marked:
+                stack.append(neighbor)
+                marked[node] = True
+                total_marked += 1
+    return total_marked
+
+
 def make_link(G, node1, node2):
     if node1 not in G:
         G[node1] = {}
@@ -18,6 +31,7 @@ def make_link(G, node1, node2):
         G[node2] = {}
     (G[node2])[node1] = 1
     return G
+
 
 def test():
     test_edges = [(1, 2), (2, 3), (4, 5), (5, 6)]
@@ -32,3 +46,12 @@ def test():
     assert 4 not in marked
     assert 5 not in marked
     assert 6 not in marked
+    print "All tests PASSED!!"
+
+
+def main():
+    test()
+
+
+if __name__ == '__main__':
+    main()
