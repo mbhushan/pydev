@@ -17,16 +17,29 @@ def read_names(fname):
             else:
                 namedict[name] = 1
     sorted(namelist)
-    x = namelist[-1]
-    print "sorted last name: ", x
-    namelist = filter(lambda n: n != x, namelist)
-    x = namelist[-1]
-    print "sorted second last name: ", x
+    namelist_freq(namelist)
     return namedict
 
 
-def popular_name(namedict, k):
-    pop_list = [0]*k
+def namelist_freq(nlist):
+    result = {}
+    n = nlist[0]
+    count = 1
+    r = len(nlist)
+    for i in range(1, r):
+        if nlist[i] == n:
+            count += 1
+        else:
+            result[n] = count
+            count = 1
+            n = nlist[i]
+    if n not in result:
+        result[n] = count
+        print "namelist_freq: ", popular_name(result, 1)
+
+
+def popular_name(namedict, x):
+    pop_list = [0]*x
     for k, v in namedict.items():
         mn = min(pop_list)
         if v > mn:
