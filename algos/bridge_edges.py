@@ -178,3 +178,12 @@ def test_bridge_edges():
          }
     bridges = bridge_edges(G, 'a')
     assert bridges == [('d', 'e')]
+
+
+
+def main():
+    test_bridge_edges()
+
+
+if __name__ == '__main__':
+    main()

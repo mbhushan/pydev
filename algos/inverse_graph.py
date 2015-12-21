@@ -3,7 +3,7 @@
 # of the inverse graph.
 
 def inverse_graph(graph):
-    # YOUR CODE HERE
+
 
 def test():
     g1 = [[0, 1, 1, 0],
@@ -28,4 +28,8 @@ def test():
 # you'll get an assertion error. Don't forget to remove the call to the
 # test before submitting your code.
 
-#test()
+def main():
+    test()
+
+if __name__ == '__main__':
+    main()
